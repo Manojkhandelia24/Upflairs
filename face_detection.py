@@ -12,7 +12,7 @@ while True:
     if flag:
 
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                      
-        faces = fd.detectMultiScale(img_gray, scaleFactor = 1.1, minNeighbors = 5, minSize = (50,50))     # works better on gray image
+        faces = fd.detectMultiScale(img_gray, scaleFactor = 1.3, minNeighbors = 5, minSize = (50,50))     # works better on gray image
 
 
         np.random.seed(50)
