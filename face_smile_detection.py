@@ -12,8 +12,10 @@ notCaptured = True
 seq = 0
 
 
-while notCaptured:    
-    flag, img = vid.read()
+while notCaptured:  
+      
+    # Capture frame-by-frame 
+    flag, img = vid.read()   # flag is true if frame is captured  # frame is in img
     if flag:
 
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                      
@@ -32,20 +34,21 @@ while notCaptured:
             if len(smiles) == 1:
                 seq += 1
 
-                if seq == 10:
+                if seq == 5:                         # wait for 10 frames to capture the image
                     cv2.imwrite('myselfie.png',img)
                     notCaptured = False
                     break
             else:
                 seq = 0
 
+            # Draw a rectangle around the faces
             cv2.rectangle(img, pt1 = (x,y), pt2 = (x+w, y+h), color = colors[i], thickness = 8)
             i+=1
        
         
         cv2.imshow('Preview',img)
         key = cv2.waitKey(1)
-        if key == ord('q'):  # ord() gives the ascii value
+        if key == ord('q'):     # ord() gives the ascii value
             break
     else:
         print('No Frames')
