@@ -12,8 +12,10 @@ fd = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_defa
 vid = cv2.VideoCapture(0)
 
 old_data = pd.read_csv('face_data.csv',index_col = 0,sep='|')
+entry_match = False
 
 while True:
+    
     flag, img = vid.read()
     if(flag):
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                      
@@ -35,11 +37,13 @@ while True:
                         print(entries['names'])
                         cv2.putText(img,entries['names'],(30,30),cv2.FONT_HERSHEY_COMPLEX, 1.5, (0,0,255),5)
 
-                        if entries['names']  == 'Manoj':
-                            wb.open_new('https://')
-                        elif entries['names'] == 'Tapan':
-                            os.startfile() # insert path
-
+                        if entry_match == False:
+                            if entries['names']  == 'Manoj':
+                                wb.open_new('https://www.youtube.com/channel/UC0RhatS1pyxInC00YKjjBqQ')
+                                entry_match = True
+                            elif entries['names'] == 'Tapan':
+                                os.startfile('foodbilling.py')  # insert path
+                                entry_match = True
                         break
 
         for x,y,w,h in faces:
